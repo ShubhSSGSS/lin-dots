@@ -1,0 +1,12 @@
+#!/bin/sh
+
+PowerStatus=$(bluetoothctl show 00:45:E2:69:FE:36 | grep Powered)
+echo $PowerStatus
+
+if test "$PowerStatus" = "Powered: yes";
+
+then
+	bluetoothctl power off;
+else
+	bluetoothctl power on;
+fi

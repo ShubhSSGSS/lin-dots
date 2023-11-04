@@ -1,0 +1,10 @@
+#!/bin/sh
+
+paper=$(find ~/Pictures/Wallpapers -type f -name "*.jpg" -o -name "*.png" | shuf -n 1)
+
+swaybg -i $paper &
+
+wal -c
+wal -n -e --cols16 -q -i $paper &
+
+cp ~/.cache/wal/colors-hyprland ~/.config/hypr/colors.conf
