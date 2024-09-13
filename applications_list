@@ -38,9 +38,6 @@
 - **python**: Scripting and programming language
 - **nodejs** and **npm**: JavaScript runtime and package manager
 - **rust**: Rust programming language (if needed)
-- **docker**: Containerization platform (if needed)
-- **visual-studio-code-bin**: Graphical code editor (if needed)
-
 ### **7. Audio:**
 - **pipewire**: Modern audio system (replaces PulseAudio)
 - **pipewire-pulse**: PulseAudio compatibility layer for PipeWire
