@@ -2,6 +2,7 @@
 - **Arch Linux**: Base installation
 - **Base-devel**: Development tools (compilers, libraries, etc.)
 - **NetworkManager**: For managing network connections
+- **networkmanager-applet**: GUI for NetworkManager
 
 ### **2. Display Server and Window Manager:**
 - **Hyprland**: Wayland compositor
@@ -36,6 +37,9 @@
 - **cmake**: Build system generator
 - **python**: Scripting and programming language
 - **nodejs** and **npm**: JavaScript runtime and package manager
+- **rust**: Rust programming language (if needed)
+- **docker**: Containerization platform (if needed)
+- **visual-studio-code-bin**: Graphical code editor (if needed)
 
 ### **7. Audio:**
 - **pipewire**: Modern audio system (replaces PulseAudio)
@@ -68,6 +72,7 @@
 ### **12. File Management:**
 - **ranger**: Terminal-based file manager
 - **syncthing**: File synchronization
+- **rclone**: Command-line program to manage files on cloud storage
 
 ### **13. Power Management:**
 - **tlp**: Power management optimization
@@ -99,17 +104,11 @@
 ### **19. AUR Package Management:**
 - **yay**: AUR helper for installing AUR packages
 
----
+### **20. Boot and Administrative Utilities:**
+- **grub**: Bootloader
+- **os-prober**: Detect other installed operating systems
+- **sudo**: Command to grant administrative rights
 
-### **Fun and Aesthetic Tools:**
+### **21. Fun and Aesthetic Tools:**
 - **neofetch**: System information tool for showing off your system setup
 - **16-color pywal**: Generates color schemes based on images and applies them to your terminal and apps
-
----
-
-### **Essential GUI Applications:**
-- **firefox**: Web browser
-- **discord**: Voice and text chat platform
-- **telegram-desktop**: Telegram messaging app
-- **thunderbird**: Email client (can replace with **mutt** or **aerc** for terminal-based clients)
-- **yacreader**: Comic book reader
