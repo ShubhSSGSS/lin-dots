@@ -1,0 +1,115 @@
+### **1. System Installation and Base:**
+- **Arch Linux**: Base installation
+- **Base-devel**: Development tools (compilers, libraries, etc.)
+- **NetworkManager**: For managing network connections
+
+### **2. Display Server and Window Manager:**
+- **Hyprland**: Wayland compositor
+- **swaybg**: Background image manager for Wayland
+- **alacritty**: Terminal emulator
+- **wlroots**: Required by Hyprland for Wayland compatibility
+
+### **3. AMD Graphics Drivers for Wayland:**
+- **mesa**: OpenGL/Vulkan drivers for AMD
+- **vulkan-radeon**: Vulkan driver for AMD GPUs
+- **libva-mesa-driver**: VA-API support (video acceleration)
+- **mesa-vdpau**: VDPAU support (video decoding)
+
+### **4. GUI Elements:**
+- **Waybar**: Status bar for Wayland
+- **Rofi**: Application launcher
+- **xdg-desktop-portal**: For Flatpak or Snap integration and application permissions
+- **swaylock**: Lock screen (if needed for Hyprland)
+
+### **5. Terminal and Terminal-based Utilities:**
+- **tmux**: Terminal multiplexer
+- **ranger**: Terminal file manager
+- **neovim**: Text editor
+- **nano**: Text editor
+- **btop**: System monitoring tool
+- **zsh**: Shell (instead of bash)
+- **oh-my-zsh** or **zsh-syntax-highlighting**: Useful zsh plugins
+- **git**: Version control
+
+### **6. Development Tools:**
+- **gcc** and **clang**: C/C++ compilers
+- **cmake**: Build system generator
+- **python**: Scripting and programming language
+- **nodejs** and **npm**: JavaScript runtime and package manager
+
+### **7. Audio:**
+- **pipewire**: Modern audio system (replaces PulseAudio)
+- **pipewire-pulse**: PulseAudio compatibility layer for PipeWire
+- **wireplumber**: PipeWire session manager
+- **pavucontrol**: GUI for audio control
+- **pamixer**: Terminal-based audio control
+- **alsa-utils**: Low-level audio control and troubleshooting tools
+
+### **8. Bluetooth:**
+- **bluez**: Bluetooth protocol stack
+- **bluez-utils**: Additional Bluetooth tools
+- **blueman**: Bluetooth manager with GUI
+- **pipewire-bluetooth**: For Bluetooth audio device support
+
+### **9. Clipboard Management:**
+- **wl-clipboard**: Clipboard utilities for Wayland
+- **clipman**: Clipboard manager for Wayland
+
+### **10. Gaming:**
+- **steam**: Gaming platform
+- **lutris**: Game management platform
+- **proton**: Compatibility layer for running Windows games
+
+### **11. Multimedia:**
+- **mpv**: Video player
+- **vlc**: Optional media player
+- **imagemagick**: For image manipulation
+
+### **12. File Management:**
+- **ranger**: Terminal-based file manager
+- **syncthing**: File synchronization
+
+### **13. Power Management:**
+- **tlp**: Power management optimization
+- **upower**: Power status and battery management
+- **acpid**: Power and event handling
+
+### **14. Fonts and Themes:**
+- **nerd-fonts**: For enhanced terminal font support
+- **arc-theme** or **adapta-gtk-theme**: GTK themes (if using GTK applications)
+- **papirus-icon-theme**: Optional icon theme
+
+### **15. Notification Management:**
+- **mako**: Lightweight notification daemon for Wayland
+
+### **16. Screenshot and Screen Recording:**
+- **grim**: Screenshot tool for Wayland
+- **slurp**: Region selection for screenshots
+- **swappy**: Screenshot editor for Wayland
+- **wf-recorder**: Screen recorder for Wayland
+
+### **17. Security:**
+- **ufw**: Uncomplicated Firewall
+- **fail2ban**: Protection from brute force attacks
+
+### **18. Backup and Sync:**
+- **rsync**: File synchronization and backup
+- **timeshift**: System restore utility
+
+### **19. AUR Package Management:**
+- **yay**: AUR helper for installing AUR packages
+
+---
+
+### **Fun and Aesthetic Tools:**
+- **neofetch**: System information tool for showing off your system setup
+- **16-color pywal**: Generates color schemes based on images and applies them to your terminal and apps
+
+---
+
+### **Essential GUI Applications:**
+- **firefox**: Web browser
+- **discord**: Voice and text chat platform
+- **telegram-desktop**: Telegram messaging app
+- **thunderbird**: Email client (can replace with **mutt** or **aerc** for terminal-based clients)
+- **yacreader**: Comic book reader
