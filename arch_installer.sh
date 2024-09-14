@@ -55,9 +55,6 @@ genfstab -U /mnt >> /mnt/etc/fstab
 # Chroot into the new system
 arch-chroot /mnt /bin/bash <<EOF
 
-# Chroot into the new system
-arch-chroot /mnt /bin/bash <<EOF
-
 # Enable multilib repository
 cat <<EOL >> /etc/pacman.conf
 
