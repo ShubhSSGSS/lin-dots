@@ -1,8 +1,18 @@
 #!/bin/bash
 
+set -e  # Exit immediately if a command exits with a non-zero status.
+
 # Define variables
 DISK="/dev/nvme0n1"
 HOSTNAME="archlinux"
+
+# Function to handle errors
+error_handler() {
+    echo "Error occurred in line $1"
+    exit 1
+}
+
+trap 'error_handler $LINENO' ERR
 
 # Prompt for passwords and additional user details
 read -sp "Enter root password: " ROOT_PASSWORD
@@ -54,7 +64,7 @@ locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
 # Set root password
-echo -e "$ROOT_PASSWORD\n$ROOT_PASSWORD" | passwd
+echo -e "$ROOT_PASSWORD\n$ROOT_PASSWORD" | passwd root
 
 # Create a new user
 if [ "$SUDO_PRIVILEGES" = "y" ]; then
@@ -70,7 +80,7 @@ echo -e "$USER_PASSWORD\n$USER_PASSWORD" | passwd $USER
 
 # Configure sudo to always prompt for password for users in the wheel group
 pacman -S sudo --noconfirm
-sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
+sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
 # Install GRUB and os-prober
 pacman -S grub efibootmgr os-prober --noconfirm
@@ -79,47 +89,42 @@ pacman -S grub efibootmgr os-prober --noconfirm
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
-# Install yay and other AUR packages
-pacman -S git --noconfirm
+# Install git and Go for yay installation
+pacman -S git go --noconfirm
 
-# Switch to the new user to install yay and other AUR packages
+# Install yay
 su - $USER -c "
 cd /tmp
 git clone https://aur.archlinux.org/yay-git.git
 cd yay-git
 makepkg -si --noconfirm
+cd ..
 rm -rf yay-git
 "
 
-# Install all required packages with yay as the new user
-su - $USER -c 'yay -S hyprland swaybg alacritty wlroots mesa vulkan-radeon libva-mesa-driver mesa-vdpau waybar rofi xdg-desktop-portal swaylock tmux ranger neovim nano btop zsh zsh-syntax-highlighting git gcc clang cmake python nodejs npm rust pipewire pipewire-pulse wireplumber pavucontrol pamixer alsa-utils bluez bluez-utils blueman pipewire-bluetooth wl-clipboard clipman steam lutris proton mpv vlc imagemagick syncthing rclone tlp upower acpid nerd-fonts arc-theme papirus-icon-theme mako grim slurp swappy wf-recorder ufw fail2ban rsync timeshift neofetch python-pywal --noconfirm'
+# Install all required packages with yay
+su - $USER -c "yay -S hyprland swaybg alacritty wlroots mesa vulkan-radeon libva-mesa-driver mesa-vdpau waybar rofi xdg-desktop-portal swaylock tmux ranger neovim nano btop zsh zsh-syntax-highlighting git gcc clang cmake python nodejs npm rust pipewire pipewire-pulse wireplumber pavucontrol pamixer alsa-utils bluez bluez-utils blueman pipewire-bluetooth wl-clipboard clipman steam lutris proton mpv vlc imagemagick syncthing rclone tlp upower acpid nerd-fonts arc-theme papirus-icon-theme mako grim slurp swappy wf-recorder ufw fail2ban rsync timeshift neofetch python-pywal --noconfirm"
 
-# Enable services
+# Enable essential services
 systemctl enable NetworkManager
 systemctl enable bluetooth
 systemctl enable pipewire pipewire-pulse wireplumber
 systemctl enable tlp
 systemctl enable ufw
+systemctl enable fail2ban
 systemctl enable syncthing@$USER
 systemctl enable acpid
-systemctl enable timeshift-autosnap
 systemctl enable mako
 
-# Start services
-systemctl start NetworkManager
-systemctl start bluetooth
-systemctl start pipewire pipewire-pulse wireplumber
-systemctl start tlp
-systemctl start ufw
-systemctl start syncthing@$USER
-systemctl start acpid
-systemctl start timeshift-autosnap
-systemctl start mako
+# Set up firewall
+ufw default deny incoming
+ufw default allow outgoing
+ufw enable
 
 # Set up zsh configuration for the user
-su - $USER -c "sh -c \"\$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
+su - $USER -c "sh -c \"\$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\" \"\" --unattended"
 
-# Optionally copy a basic .zshrc to the new user's home
+# Create a basic .zshrc for the new user
 cat <<EOL > /home/$USER/.zshrc
 # Example .zshrc configuration
 export ZSH="/home/$USER/.oh-my-zsh"
@@ -131,6 +136,11 @@ chown $USER:$USER /home/$USER/.zshrc
 
 EOF
 
-# Unmount partitions and reboot
-umount -R /mnt
-reboot
+echo "Installation complete. You can now reboot into your new Arch Linux system."
+read -p "Do you want to reboot now? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    umount -R /mnt
+    reboot
+fi
