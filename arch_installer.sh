@@ -92,6 +92,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # Install git and Go for yay installation
 pacman -S git go --noconfirm
 
+# Temporarily allow passwordless sudo for the user
+echo "$USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/99_yay_install
+
 # Install yay
 su - $USER -c "
 cd /tmp
@@ -101,6 +104,9 @@ makepkg -si --noconfirm
 cd ..
 rm -rf yay-git
 "
+
+# Revert sudo to require a password again
+rm /etc/sudoers.d/99_yay_install
 
 # Install all required packages with yay
 su - $USER -c "yay -S hyprland swaybg alacritty wlroots mesa vulkan-radeon libva-mesa-driver mesa-vdpau waybar rofi xdg-desktop-portal swaylock tmux ranger neovim nano btop zsh zsh-syntax-highlighting git gcc clang cmake python nodejs npm rust pipewire pipewire-pulse wireplumber pavucontrol pamixer alsa-utils bluez bluez-utils blueman pipewire-bluetooth wl-clipboard clipman steam lutris proton mpv vlc imagemagick syncthing rclone tlp upower acpid nerd-fonts arc-theme papirus-icon-theme mako grim slurp swappy wf-recorder ufw fail2ban rsync timeshift neofetch python-pywal --noconfirm"
