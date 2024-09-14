@@ -75,6 +75,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Install yay and other AUR packages
+su - $USER<<EOF
 pacman -S git --noconfirm
 cd /tmp
 git clone https://aur.archlinux.org/yay-git.git
@@ -82,6 +83,7 @@ cd yay-git
 makepkg -si --noconfirm
 cd ..
 rm -rf yay-git
+EOF
 
 # Install all required packages
 yay -S hyprland swaybg alacritty wlroots mesa vulkan-radeon libva-mesa-driver mesa-vdpau waybar rofi xdg-desktop-portal swaylock tmux ranger neovim nano btop zsh zsh-syntax-highlighting git gcc clang cmake python nodejs npm rust pipewire pipewire-pulse wireplumber pavucontrol pamixer alsa-utils bluez bluez-utils blueman pipewire-bluetooth wl-clipboard clipman steam lutris proton mpv vlc imagemagick syncthing rclone tlp upower acpid nerd-fonts arc-theme papirus-icon-theme mako grim slurp swappy wf-recorder ufw fail2ban rsync timeshift neofetch python-pywal --noconfirm
