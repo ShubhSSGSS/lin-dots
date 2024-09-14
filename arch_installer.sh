@@ -56,7 +56,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash <<EOF
 
 # Enable multilib repository
-sed -i '/[multilib]/,/Include/ s/^#//' /etc/pacman.conf
+sed -i '/multilib/,/Include/ s/^#//' /etc/pacman.conf
 
 # Update pacman database
 pacman -Sy
