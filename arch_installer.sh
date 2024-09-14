@@ -75,8 +75,8 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Install yay and other AUR packages
-su - $USER<<EOF
 pacman -S git --noconfirm
+su - $USER<<EOF
 cd /tmp
 git clone https://aur.archlinux.org/yay-git.git
 cd yay-git
