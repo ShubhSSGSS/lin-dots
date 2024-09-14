@@ -116,7 +116,7 @@ rm -rf yay-git
 "
 
 # Install all required packages with yay
-su - $USER -c "yay -S hyprland swaybg alacritty wlroots mesa vulkan-radeon libva-mesa-driver mesa-vdpau waybar rofi xdg-desktop-portal swaylock tmux ranger neovim nano btop zsh zsh-syntax-highlighting git gcc clang cmake python nodejs npm rust pipewire pipewire-pulse wireplumber pavucontrol pamixer alsa-utils bluez bluez-utils blueman pipewire-bluetooth wl-clipboard clipman steam lutris proton mpv vlc imagemagick syncthing rclone tlp upower acpid nerd-fonts arc-theme papirus-icon-theme mako grim slurp swappy wf-recorder ufw fail2ban rsync timeshift neofetch python-pywal --noconfirm"
+su - $USER -c "yay -S hyprland swaybg alacritty wlroots mesa vulkan-radeon libva-mesa-driver mesa-vdpau waybar rofi xdg-desktop-portal swaylock tmux ranger neovim nano btop zsh zsh-syntax-highlighting git gcc clang cmake python nodejs npm rust pipewire pipewire-pulse wireplumber pavucontrol pamixer alsa-utils bluez bluez-utils blueman pipewire-bluetooth wl-clipboard clipman steam lutris mpv vlc imagemagick syncthing rclone tlp upower acpid nerd-fonts arc-theme papirus-icon-theme mako grim slurp swappy wf-recorder ufw fail2ban rsync timeshift neofetch python-pywal --noconfirm"
 
 # Revert sudo to require a password again
 rm /etc/sudoers.d/99_yay_install
