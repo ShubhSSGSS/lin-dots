@@ -55,6 +55,12 @@ genfstab -U /mnt >> /mnt/etc/fstab
 # Chroot into the new system
 arch-chroot /mnt /bin/bash <<EOF
 
+# Enable multilib repository
+sed -i '/[multilib]/,/Include/ s/^#//' /etc/pacman.conf
+
+# Update pacman database
+pacman -Sy
+
 # Set hostname
 echo "$HOSTNAME" > /etc/hostname
 
