@@ -56,7 +56,7 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 echo -e "$ROOT_PASSWORD\n$ROOT_PASSWORD" | passwd
 
 # Create a new user
-useradd -m -G wheel -s /bin/zsh $USER
+useradd -m -G wheel -s $USER
 echo -e "$USER_PASSWORD\n$USER_PASSWORD" | passwd $USER
 
 # Configure sudo
